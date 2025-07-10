@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StartEase - Landing Page</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #333; }
+
+    header {
+      background: #007bff;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    header p { font-size: 1.2em; margin-bottom: 20px; }
+    .cta-button {
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007bff;
+    }
+
+    .features, .pricing, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 280px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing .card h3 {
+      color: #28a745;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .features, .pricing, .testimonials {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <h1>StartEase</h1>
+    <p>Empowering Startups with Smart Digital Solutions</p>
+    <a class="cta-button" href="#contact">Get Started Now</a>
+  </header>
+
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Our Services</h2>
+    <div class="features">
+      <div class="card">
+        <h3>Web Development</h3>
+        <p>Build fast, responsive, and SEO-friendly websites for your business.</p>
+      </div>
+      <div class="card">
+        <h3>Brand Design</h3>
+        <p>Create memorable brand identities with logos, colors, and themes.</p>
+      </div>
+      <div class="card">
+        <h3>Digital Marketing</h3>
+        <p>Reach the right audience with expert SEO, ads, and social strategies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonials">
+      <div class="card">
+        <p>“StartEase helped launch our product in just 2 weeks. Brilliant UI and awesome support!”</p>
+        <strong>– Priya S, Founder of EduLabs</strong>
+      </div>
+      <div class="card">
+        <p>“Their marketing team gave us 3x traffic in the first month. Highly recommend!”</p>
+        <strong>– Arjun P, CEO of TechNova</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <h2>Pricing Plans</h2>
+    <div class="pricing">
+      <div class="card">
+        <h3>Starter</h3>
+        <p>$199/month</p>
+        <p>Basic Website + SEO Setup</p>
+      </div>
+      <div class="card">
+        <h3>Pro</h3>
+        <p>$499/month</p>
+        <p>Website + Branding + SEO + Marketing</p>
+      </div>
+      <div class="card">
+        <h3>Enterprise</h3>
+        <p>$999/month</p>
+        <p>All Pro features + Dedicated Support</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 StartEase. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
