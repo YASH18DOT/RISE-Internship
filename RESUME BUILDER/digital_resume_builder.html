@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Resume Builder</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    #preview {
+      margin: 30px auto;
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Digital Resume Builder</h1>
+
+  <!-- Resume Form -->
+  <form id="resumeForm">
+    <h2>Enter Your Details</h2>
+    <label>Full Name</label>
+    <input type="text" id="name" required />
+    
+    <label>Email</label>
+    <input type="email" id="email" required />
+    
+    <label>Phone</label>
+    <input type="text" id="phone" required />
+    
+    <label>Education</label>
+    <textarea id="education" rows="3" required></textarea>
+    
+    <label>Experience</label>
+    <textarea id="experience" rows="3" required></textarea>
+    
+    <label>Skills</label>
+    <textarea id="skills" rows="2" required></textarea>
+
+    <button type="button" onclick="generatePreview()">Preview</button>
+    <button type="button" onclick="downloadPDF()">Download PDF</button>
+  </form>
+
+  <!-- Resume Preview -->
+  <div id="preview" style="display: none;">
+    <h2>Resume Preview</h2>
+    <div class="section"><strong>Name:</strong> <span id="p_name"></span></div>
+    <div class="section"><strong>Email:</strong> <span id="p_email"></span></div>
+    <div class="section"><strong>Phone:</strong> <span id="p_phone"></span></div>
+    <div class="section"><strong>Education:</strong> <p id="p_education"></p></div>
+    <div class="section"><strong>Experience:</strong> <p id="p_experience"></p></div>
+    <div class="section"><strong>Skills:</strong> <p id="p_skills"></p></div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function generatePreview() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const education = document.getElementById("education").value.trim();
+      const experience = document.getElementById("experience").value.trim();
+      const skills = document.getElementById("skills").value.trim();
+
+      if (!name || !email || !phone || !education || !experience || !skills) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      document.getElementById("p_name").innerText = name;
+      document.getElementById("p_email").innerText = email;
+      document.getElementById("p_phone").innerText = phone;
+      document.getElementById("p_education").innerText = education;
+      document.getElementById("p_experience").innerText = experience;
+      document.getElementById("p_skills").innerText = skills;
+
+      document.getElementById("preview").style.display = "block";
+    }
+
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const education = document.getElementById("education").value.trim();
+      const experience = document.getElementById("experience").value.trim();
+      const skills = document.getElementById("skills").value.trim();
+
+      doc.setFontSize(16);
+      doc.text("Resume", 90, 15);
+
+      doc.setFontSize(12);
+      doc.text(`Name: ${name}`, 10, 30);
+      doc.text(`Email: ${email}`, 10, 40);
+      doc.text(`Phone: ${phone}`, 10, 50);
+      doc.text("Education:", 10, 65);
+      doc.text(education, 10, 75);
+      doc.text("Experience:", 10, 95);
+      doc.text(experience, 10, 105);
+      doc.text("Skills:", 10, 125);
+      doc.text(skills, 10, 135);
+
+      doc.save("resume.pdf");
+    }
+  </script>
+
+</body>
+</html>
