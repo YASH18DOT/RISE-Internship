@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown Blog Editor</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    .editor-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    textarea, .preview {
+      width: 100%;
+      min-height: 300px;
+      padding: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: monospace;
+      background: #fff;
+    }
+
+    .preview {
+      overflow-y: auto;
+      background: #f8f8f8;
+    }
+
+    .controls {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .posts-list {
+      margin-top: 30px;
+    }
+
+    .post-item {
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      textarea, .preview {
+        width: 48%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Markdown Blog Editor</h1>
+
+  <div class="controls">
+    <input type="text" id="postTitle" placeholder="Enter blog title..." />
+    <br />
+    <button onclick="savePost()">Save Post</button>
+    <button onclick="clearEditor()">Clear Editor</button>
+  </div>
+
+  <div class="editor-container">
+    <textarea id="markdownInput" oninput="updatePreview()" placeholder="Write your blog in Markdown..."></textarea>
+    <div class="preview" id="previewPane"></div>
+  </div>
+
+  <h2>📚 Saved Posts</h2>
+  <div class="posts-list" id="postsList"></div>
+
+  <script>
+    const markdownInput = document.getElementById("markdownInput");
+    const previewPane = document.getElementById("previewPane");
+    const postsList = document.getElementById("postsList");
+
+    let posts = JSON.parse(localStorage.getItem("markdownPosts")) || [];
+
+    function updatePreview() {
+      const rawMarkdown = markdownInput.value;
+      previewPane.innerHTML = marked.parse(rawMarkdown);
+    }
+
+    function savePost() {
+      const title = document.getElementById("postTitle").value.trim();
+      const content = markdownInput.value.trim();
+      if (!title || !content) {
+        alert("Please enter a title and some content.");
+        return;
+      }
+
+      posts.push({ title, content });
+      localStorage.setItem("markdownPosts", JSON.stringify(posts));
+      document.getElementById("postTitle").value = "";
+      markdownInput.value = "";
+      updatePreview();
+      renderPosts();
+    }
+
+    function clearEditor() {
+      document.getElementById("postTitle").value = "";
+      markdownInput.value = "";
+      updatePreview();
+    }
+
+    function renderPosts() {
+      postsList.innerHTML = "";
+      posts.forEach((post, index) => {
+        const div = document.createElement("div");
+        div.className = "post-item";
+        div.innerText = post.title;
+        div.onclick = () => {
+          document.getElementById("postTitle").value = post.title;
+          markdownInput.value = post.content;
+          updatePreview();
+        };
+        postsList.appendChild(div);
+      });
+    }
+
+    // Initial load
+    renderPosts();
+    updatePreview();
+  </script>
+
+</body>
+</html>
