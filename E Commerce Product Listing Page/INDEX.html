@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrendyStore</title>
+  <link rel="stylesheet" href="INDEX.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>🌟 TrendyStore</h1>
+    <input type="text" id="searchInput" placeholder="Search for stylish deals..." />
+  </header>
+
+  <section class="filters">
+    <div>
+      <h3>Category</h3>
+      <label><input type="checkbox" value="Electronics" class="category-filter" /> Electronics</label><br>
+      <label><input type="checkbox" value="Clothing" class="category-filter" /> Clothing</label><br>
+      <label><input type="checkbox" value="Books" class="category-filter" /> Books</label><br>
+      <label><input type="checkbox" value="Accessories" class="category-filter" /> Accessories</label><br>
+      <label><input type="checkbox" value="Home" class="category-filter" /> Home</label>
+    </div>
+
+    <div>
+      <h3>Price</h3>
+      <label><input type="radio" name="price" value="all" checked /> All</label><br>
+      <label><input type="radio" name="price" value="0-50" /> $0 - $50</label><br>
+      <label><input type="radio" name="price" value="51-100" /> $51 - $100</label><br>
+      <label><input type="radio" name="price" value="101-200" /> $101 - $200</label>
+    </div>
+
+    <div>
+      <h3>Rating</h3>
+      <label><input type="radio" name="rating" value="0" checked /> All</label><br>
+      <label><input type="radio" name="rating" value="4" /> 4+ stars</label><br>
+      <label><input type="radio" name="rating" value="3" /> 3+ stars</label>
+    </div>
+  </section>
+
+  <main id="productGrid"></main>
+
+  <script src="INDEX.js"></script>
+</body>
+</html>
