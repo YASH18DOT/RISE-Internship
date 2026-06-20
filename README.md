@@ -1,4 +1,4 @@
-💼 RISE Internship Web Development Projects
+💼 RISE Internship Web Development Projects--
 
 This repository showcases the web development projects I completed as part of the RISE Internship program. Each project demonstrates hands-on skills in frontend technologies like HTML, CSS, JavaScript, and responsive design practices.
 
